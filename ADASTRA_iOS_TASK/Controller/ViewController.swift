@@ -45,5 +45,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.settingData(data: self.categoryData[indexPath.row])
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CategoryDetailVC") as! CategoryDetailVC
+        vc.modalPresentationStyle = .popover
+        vc.Producttitle = self.categoryData[indexPath.row].title ?? ""
+        vc.Productdescription = self.categoryData[indexPath.row].descriptionField ?? ""
+        vc.Productprice = String(self.categoryData[indexPath.row].price ?? 0.0)
+        vc.image = self.categoryData[indexPath.row].image ?? ""
+        present(vc, animated: true)
+    }
     
 }
