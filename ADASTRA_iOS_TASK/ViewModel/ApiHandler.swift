@@ -11,6 +11,7 @@ struct ApiHandler {
     
     func apiCall(success:@escaping ([CategoryModel])->Void,failure:@escaping (Error)->Void){
         guard let url = URL(string: "https://fakestoreapi.com/products") else {return}
+        
         URLSession.shared.dataTask(with: url) { data, response, error
             in
             print(response)
