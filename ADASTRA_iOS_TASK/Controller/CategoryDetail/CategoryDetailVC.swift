@@ -16,25 +16,22 @@ class CategoryDetailVC: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
-  
-    var Productprice = ""
-    var Producttitle = ""
-    var Productdescription = ""
-    var image = ""
+    var categoryDetail: CategoryModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       settingData()
+        settingData(data: self.categoryDetail!)
     }
     
     
-    func settingData(){
+    func settingData(data: CategoryModel){
         bgView.layer.cornerRadius = 10
-        lblPrice.text = Productprice + " $"
-        lblTitle.text = Producttitle
-        lblDescription.text = Productdescription
-        imgView.sd_setImage(with: URL(string: image ))
+        lblPrice.text = String(data.price ?? 0.0) + " $"
+        lblTitle.text = data.title ?? ""
+        lblDescription.text = data.descriptionField ?? ""
+        imgView.sd_setImage(with: URL(string: data.image ?? "" ))
+        imgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         
     }
 }
